@@ -75,6 +75,20 @@ USoundWave* UDlgNode_SpeechSequence::GetNodeVoiceSoundWave() const
 	return nullptr;
 }
 
+//+ИТ
+//получить изображение диалога
+UTexture2D* UDlgNode_SpeechSequence::GetNodeImage() const
+{
+	if (SpeechSequence.IsValidIndex(ActualIndex))
+	{
+		return SpeechSequence[ActualIndex].ImageDialogue;
+	}
+
+	return nullptr;
+}
+//-ИТ
+
+
 UDialogueWave* UDlgNode_SpeechSequence::GetNodeVoiceDialogueWave() const
 {
 	if (SpeechSequence.IsValidIndex(ActualIndex))

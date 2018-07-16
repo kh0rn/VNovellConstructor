@@ -16,6 +16,7 @@
 class UDlgContextInternal;
 class UDlgNode;
 class USoundWave;
+class UTexture;
 class UDialogueWave;
 struct FDlgTextArgument;
 
@@ -157,6 +158,11 @@ public:
 
 	/** Gets the voice of this Node as a SoundWave. */
 	virtual USoundWave* GetNodeVoiceSoundWave() const { return nullptr; }
+
+	/** Gets the voice of this Node as a image. */
+	//+ИТ
+	virtual UTexture2D* GetNodeImage() const { return nullptr; }
+	//-ИТ
 
 	/** Gets the voice of this Node as a DialogueWave. Only the first Dialogue context in the wave should be used. */
 	virtual UDialogueWave* GetNodeVoiceDialogueWave() const { return nullptr; }

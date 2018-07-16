@@ -320,6 +320,11 @@ bool UDialogueGraphNode::HasVoicePropertiesSet() const
 		return true;
 	}
 
+	if (DialogueNode->GetNodeImage() != nullptr)
+	{
+		return true;
+	}
+
 	// Speech sequence node
 	if (IsSpeechSequenceNode())
 	{

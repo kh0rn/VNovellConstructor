@@ -7,6 +7,7 @@
 
 class USoundWave;
 class UDialogueWave;
+class UTexture2D;
 struct FDlgTextArgument;
 
 /**
@@ -49,6 +50,7 @@ public:
 	const FText& GetNodeText() const override { return (TextArguments.Num() > 0 && !ConstructedText.IsEmpty()) ? ConstructedText : Text; }
 	const FText& GetRawNodeText() const override { return Text; }
 	USoundWave* GetNodeVoiceSoundWave() const override { return VoiceSoundWave; }
+	UTexture2D* GetNodeImage() const override { return ImageDialogue; }
 	UDialogueWave* GetNodeVoiceDialogueWave() const override { return VoiceDialogueWave; }
 	FName GetSpeakerState() const override { return SpeakerState; }
 	void AddSpeakerStates(TSet<FName>& States) const { States.Add(SpeakerState); }
@@ -71,6 +73,9 @@ public:
 	static FName GetMemberNameText() { return GET_MEMBER_NAME_CHECKED(UDlgNode_Speech, Text); }
 	static FName GetMemberNameTextArguments() { return GET_MEMBER_NAME_CHECKED(UDlgNode_Speech, TextArguments); }
 	static FName GetMemberNameVoiceSoundWave() { return GET_MEMBER_NAME_CHECKED(UDlgNode_Speech, VoiceSoundWave); }
+	//+ИТ
+	static FName GetMemberNameImage() { return GET_MEMBER_NAME_CHECKED(UDlgNode_Speech, ImageDialogue); }
+	//-ИТ
 	static FName GetMemberNameVoiceDialogueWave() { return GET_MEMBER_NAME_CHECKED(UDlgNode_Speech, VoiceDialogueWave); }
 	static FName GetMemberNameSpeakerState() { return GET_MEMBER_NAME_CHECKED(UDlgNode_Speech, SpeakerState); }
 	static FName GetMemberNameIsVirtualParent() { return GET_MEMBER_NAME_CHECKED(UDlgNode_Speech, bIsVirtualParent); }
@@ -87,6 +92,12 @@ protected:
 	/** Voice attached to this node. The Sound Wave variant. */
 	UPROPERTY(EditAnywhere, Category = DialogueNodeData, Meta = (DlgSaveOnlyReference))
 	USoundWave* VoiceSoundWave;
+
+	//+ИТ
+	/** Voice attached to this node. The Sound Wave variant. */
+	UPROPERTY(EditAnywhere, Category = DialogueNodeData, Meta = (DlgSaveOnlyReference))
+	UTexture2D* ImageDialogue;
+	//-ИТ
 
 	/** Voice attached to this node. The Dialogue Wave variant. Only the first wave from the dialogue context array should be used. */
 	UPROPERTY(EditAnywhere, Category = DialogueNodeData, Meta = (DlgSaveOnlyReference))

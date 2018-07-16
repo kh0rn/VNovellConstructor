@@ -5,6 +5,7 @@
 #include "DlgNode_SpeechSequence.generated.h"
 
 class USoundWave;
+class UTexture2D;
 class UDialogueWave;
 
 USTRUCT(BlueprintType)
@@ -28,6 +29,11 @@ public:
 	/** Voice attached to the entry. The Dialogue Wave variant. Only the first wave from the dialogue context array should be used. */
 	UPROPERTY(EditAnywhere, Category = DialogueNodeData, Meta = (DlgSaveOnlyReference))
 	UDialogueWave* VoiceDialogueWave;
+
+	/** Image attached to the entry. The Dialogue Wave variant. Only the first wave from the dialogue context array should be used. */
+	UPROPERTY(EditAnywhere, Category = DialogueNodeData, Meta = (DlgSaveOnlyReference))
+	UTexture2D* ImageDialogue;
+
 
 	/** State of the speaker attached to the entry. Passed to the GetParticipantIcon function. */
 	UPROPERTY(EditAnywhere, Category = DialogueNodeData)
@@ -67,6 +73,9 @@ public:
 	// Getters
 	const FText& GetNodeText() const override;
 	USoundWave* GetNodeVoiceSoundWave() const override;
+	//+ИТ
+	UTexture2D* GetNodeImage() const override;
+	//-ИТ
 	UDialogueWave* GetNodeVoiceDialogueWave() const override;
 	FName GetSpeakerState() const override;
 	void AddSpeakerStates(TSet<FName>& States) const override;

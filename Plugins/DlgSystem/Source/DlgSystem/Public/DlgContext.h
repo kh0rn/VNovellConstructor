@@ -6,7 +6,9 @@
 #include "DlgContext.generated.h"
 
 class USoundWave;
+class UTexture2D;
 class UDialogueWave;
+class UDlgDialogue;
 
 /** Used to store temporary state of edges */
 struct FDlgEdgeData
@@ -117,6 +119,8 @@ public:
 	/** Gets the Voice as a Dialogue Wave of the active node index */
 	UFUNCTION(BlueprintPure, Category = DialogueDataSound)
 	UDialogueWave* GetActiveNodeVoiceDialogueWave() const;
+
+	UTexture2D * GetActiveNodeImage() const;
 
 
 

@@ -167,6 +167,31 @@ UDialogueWave* UDlgContext::GetActiveNodeVoiceDialogueWave() const
 	return Node->GetNodeVoiceDialogueWave();
 }
 
+//+ИТ
+//вызов метода получить изображение в контексте нода
+UTexture2D* UDlgContext::GetActiveNodeImage() const
+{
+	const UDlgNode* Node = GetActiveNode();
+	if (!IsValid(Node))
+	{
+		return nullptr;
+	}
+
+	return Node->GetNodeImage();
+}
+
+//вызов метода класса для предоставление диалога выбора класса UTexture 
+//UDialoge DialogueWave* UDlgContext::GetActiveNodeVoiceDialogueWave() const
+//{
+//	const UDlgNode* Node = GetActiveNode();
+//	if (!IsValid(Node))
+//	{
+//		return nullptr;
+//	}
+//
+//	return Node->GetNodeVoiceDialogueWave();
+//}
+//-ИТ
 UTexture2D* UDlgContext::GetActiveParticipantIcon() const
 {
 	if (!IsValid(Dialogue))
