@@ -155,6 +155,14 @@ void FDialogueGraphNode_Details::CustomizeDetails(IDetailLayoutBuilder& DetailBu
 				PropertyDialogueNode->GetChildHandle(UDlgNode_Speech::GetMemberNameVoiceSoundWave()));
 			VoiceSoundWavePropertyRow->Visibility(CREATE_VISIBILITY_CALLBACK(&Self::GetVoiceSoundWaveVisibility));
 
+			//+ИТ
+			// Image
+
+			ImagePropertyRow = &SpeechDataCategory.AddProperty(
+				PropertyDialogueNode->GetChildHandle(UDlgNode_Speech::GetMemberNameImage()));
+			ImagePropertyRow->Visibility(CREATE_VISIBILITY_CALLBACK(&Self::GetImageVisibility));
+			//-ИТ
+
 			// DialogueWave
 			VoiceDialogueWavePropertyRow =  &SpeechDataCategory.AddProperty(
 				PropertyDialogueNode->GetChildHandle(UDlgNode_Speech::GetMemberNameVoiceDialogueWave()));

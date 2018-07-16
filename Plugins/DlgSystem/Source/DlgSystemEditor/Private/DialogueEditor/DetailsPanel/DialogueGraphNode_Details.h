@@ -75,6 +75,17 @@ private:
 			   ? EVisibility::Visible : EVisibility::Hidden;
 	}
 
+	//+ИТ
+	// Getters for visibility of some properties
+	EVisibility GetImageVisibility() const
+	{
+		const UDlgSystemSettings* Settings = GetDefault<UDlgSystemSettings>();
+		return Settings->DialogueDisplayedImageFields ==  EDlgImageDisplayedFields::DlgVoiceDisplayedImage ||
+			Settings->DialogueDisplayedImageFields == EDlgImageDisplayedFields::DlgVoiceDisplayedImageAndDialogueImage
+			? EVisibility::Visible : EVisibility::Hidden;
+	}
+	//-ИТ
+
 	EVisibility GetVoiceDialogueWaveVisibility() const
 	{
 		const UDlgSystemSettings* Settings = GetDefault<UDlgSystemSettings>();
@@ -105,6 +116,7 @@ private:
 	TSharedPtr<FTextPropertyPickList_CustomRowHelper> SpeakerStatePropertyRow;
 	TSharedPtr<FMultiLineEditableTextBox_CustomRowHelper> TextPropertyRow;
 	IDetailPropertyRow* VoiceSoundWavePropertyRow = nullptr;
+	IDetailPropertyRow* ImagePropertyRow = nullptr;
 	IDetailPropertyRow* VoiceDialogueWavePropertyRow = nullptr;
 
 	/** The details panel layout builder reference. */

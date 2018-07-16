@@ -47,6 +47,24 @@ enum class EDlgVoiceDisplayedFields : uint8
 };
 
 /**
+*  Defines the displayed properties of the image fields.
+*/
+UENUM()
+enum class EDlgImageDisplayedFields : uint8
+{
+	/** No Voice fields are displayed. */
+	DlgVoiceDisplayedNoImage					UMETA(DisplayName = "No image"),
+
+	/** Only display the SoundWave voice fields. */
+	DlgVoiceDisplayedImage					UMETA(DisplayName = "Image"),
+
+	/** Only display the DialogueWave voice fields. */
+	DlgVoiceDisplayedDialogueImage				UMETA(DisplayName = "Dialogue Image"),
+
+	/** Display both SoundWave and DialogueWave fields. */
+	DlgVoiceDisplayedImageAndDialogueImage	UMETA(DisplayName = "Image & Dialogue Image")
+};
+/**
  *  Defines the visibility of the SpeakerState values
  */
 UENUM()
@@ -157,6 +175,12 @@ public:
 	UPROPERTY(Category = "Dialogue", Config, EditAnywhere, DisplayName = "Displayed Voice Fields")
 	EDlgVoiceDisplayedFields DialogueDisplayedVoiceFields = EDlgVoiceDisplayedFields::DlgVoiceDisplayedSoundWave;
 
+	//+ИТ
+	/** What Image fields to show in the Dialogue Editor, if any. */
+	UPROPERTY(Category = "Dialogue", Config, EditAnywhere, DisplayName = "Displayed Image Fields")
+		EDlgImageDisplayedFields DialogueDisplayedImageFields = EDlgImageDisplayedFields::DlgVoiceDisplayedImage;
+	//-ИТ
+
 	/** Where to display the SpeakerState FName property */
 	UPROPERTY(Category = "Dialogue", Config, EditAnywhere, DisplayName = "SpeakerState Visibility")
 	EDlgSpeakerStateVisibility DialogueSpeakerStateVisibility = EDlgSpeakerStateVisibility::DlgHideAll;
@@ -192,6 +216,10 @@ public:
 	/** To show or not the voice icon in the case the node has any voice members set */
 	UPROPERTY(Category = "Graph Node", Config, EditAnywhere)
 	bool bShowHasVoiceIcon = true;
+
+	/** To show or not the voice icon in the case the node has any voice members set */
+	UPROPERTY(Category = "Graph Node", Config, EditAnywhere)
+	bool bShowHasImageIcon = true;
 
 	// Colors based on https://material.io/guidelines/style/color.html#color-color-palette
 
