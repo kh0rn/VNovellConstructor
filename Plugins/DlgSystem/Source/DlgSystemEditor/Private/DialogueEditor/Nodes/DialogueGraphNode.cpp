@@ -314,16 +314,18 @@ bool UDialogueGraphNode::HasVoicePropertiesSet() const
 		return false;
 	}
 
+	// Try simple node image
+	if (DialogueNode->GetNodeImage() != nullptr)
+	{
+		return true;
+	}
+
 	// Try simple node
 	if (DialogueNode->GetNodeVoiceSoundWave() != nullptr || DialogueNode->GetNodeVoiceDialogueWave() != nullptr)
 	{
 		return true;
 	}
-
-	if (DialogueNode->GetNodeImage() != nullptr)
-	{
-		return true;
-	}
+	
 
 	// Speech sequence node
 	if (IsSpeechSequenceNode())
@@ -334,11 +336,60 @@ bool UDialogueGraphNode::HasVoicePropertiesSet() const
 			{
 				return true;
 			}
+
+			if (Sequence.ImageDialogue != nullptr)
+			{
+				return true;
+			}
+
 		}
 	}
 
 	return false;
 }
+
+//+ИТ
+bool UDialogueGraphNode::HasImagePropertiesSet() const
+{
+	if (!IsValid(DialogueNode))
+	{
+		return false;
+	}
+
+	// Try simple node image
+	if (DialogueNode->GetNodeImage() != nullptr)
+	{
+		return true;
+	}
+
+	// Try simple node
+	if (DialogueNode->Get VoiceSoundWave() != nullptr || DialogueNode->GetNodeVoiceDialogueWave() != nullptr)
+	{
+		return true;
+	}
+
+
+	// Speech sequence node
+	if (IsSpeechSequenceNode())
+	{
+		for (const FDlgSpeechSequenceEntry Sequence : GetDialogueNode<UDlgNode_SpeechSequence>().GetNodeSpeechSequence())
+		{
+			if (Sequence.VoiceSoundWave != nullptr || Sequence.VoiceDialogueWave != nullptr)
+			{
+				return true;
+			}
+
+			if (Sequence.ImageDialogue != nullptr)
+			{
+				return true;
+			}
+
+		}
+	}
+
+	return false;
+}
+
 
 void UDialogueGraphNode::SetDialogueNodeDataChecked(int32 InIndex, UDlgNode* InNode)
 {

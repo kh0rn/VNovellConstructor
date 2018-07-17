@@ -85,6 +85,25 @@ private:
 			   ? EVisibility::Visible : EVisibility::Hidden;
 	}
 
+	//+ИТ
+	// установить видимость
+	EVisibility GetImageVisibility() const
+	{
+		const UDlgSystemSettings* Settings = GetDefault<UDlgSystemSettings>();
+		return Settings->DialogueDisplayedImageFields == EDlgImageDisplayedFields::DlgVoiceDisplayedImage ||
+			Settings->DialogueDisplayedImageFields == EDlgImageDisplayedFields::DlgVoiceDisplayedImageAndDialogueImage
+			? EVisibility::Visible : EVisibility::Hidden;
+	}
+
+	EVisibility GetImageDialogueVisibility() const
+	{
+		const UDlgSystemSettings* Settings = GetDefault<UDlgSystemSettings>();
+		return Settings->DialogueDisplayedImageFields == EDlgImageDisplayedFields::DlgVoiceDisplayedDialogueImage ||
+			Settings->DialogueDisplayedImageFields == EDlgImageDisplayedFields::DlgVoiceDisplayedImageAndDialogueImage
+			? EVisibility::Visible : EVisibility::Hidden;
+	}
+	//-ИТ
+
 	EVisibility GetVoiceDialogueWaveVisibility() const
 	{
 		const UDlgSystemSettings* Settings = GetDefault<UDlgSystemSettings>();
@@ -112,6 +131,10 @@ private:
 	TSharedPtr<FTextPropertyPickList_CustomRowHelper> ParticipantNamePropertyRow;
 	TSharedPtr<FTextPropertyPickList_CustomRowHelper> SpeakerStatePropertyRow;
 	IDetailPropertyRow* VoiceSoundWavePropertyRow = nullptr;
+	//+ИТ
+	IDetailPropertyRow* ImagePropertyRow = nullptr;
+	IDetailPropertyRow* ImageDialoguePropertyRow = nullptr;
+	//-ИТ
 	IDetailPropertyRow* VoiceDialogueWavePropertyRow = nullptr;
 	TSharedPtr<FMultiLineEditableTextBox_CustomRowHelper> TextPropertyRow;
 	TSharedPtr<FMultiLineEditableTextBox_CustomRowHelper> EdgeTextPropertyRow;

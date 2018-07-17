@@ -234,6 +234,11 @@ public:
 	/** Does this node has any voice properties set? */
 	bool HasVoicePropertiesSet() const;
 
+	//+ИТ
+	/** Does this node has any iamge properties set? */
+	bool HasImagePropertiesSet() const;
+	//-ИТ
+
 	/** Gets the node depth in the graph. */
 	int32 GetNodeDepth() const { return NodeDepth; }
 
