@@ -43,6 +43,10 @@ class DLGSYSTEM_API IDlgDialogueParticipant
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = DialogueCallback)
 	UTexture2D* GetParticipantIcon(FName ActiveSpeaker = NAME_None, FName ActiveSpeakerState = NAME_None) const;
 
+	//+ИТ
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = DialogueCallback)
+	UTexture2D* GetParticipantImage(FName ActiveSpeaker = NAME_None, FName ActiveSpeakerState = NAME_None) const;
+	//-ИТ
 	// Conditions:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = DialogueCallback)

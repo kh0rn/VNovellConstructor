@@ -120,6 +120,7 @@ public:
 	UFUNCTION(BlueprintPure, Category = DialogueDataSound)
 	UDialogueWave* GetActiveNodeVoiceDialogueWave() const;
 
+	UFUNCTION(BlueprintPure, Category = DialogueDataSound)
 	UTexture2D * GetActiveNodeImage() const;
 
 
@@ -128,6 +129,12 @@ public:
 	UFUNCTION(BlueprintPure, Category = DialogueData)
 	UTexture2D* GetActiveParticipantIcon() const;
 
+	//+ИТ
+	/** Gets the Icon associated with the active node participant name (owner name). */
+	UFUNCTION(BlueprintPure, Category = DialogueData)
+		UTexture2D* GetActiveParticipantImage() const;
+	//-ИТ
+	
 	/** Gets the Object associated with the active node participant name (owner name). */
 	UFUNCTION(BlueprintPure, Category = DialogueData)
 	UObject* GetActiveParticipant() const;

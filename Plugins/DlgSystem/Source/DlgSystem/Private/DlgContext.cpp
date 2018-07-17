@@ -180,17 +180,31 @@ UTexture2D* UDlgContext::GetActiveNodeImage() const
 	return Node->GetNodeImage();
 }
 
+//+ИТ
 //вызов метода класса для предоставление диалога выбора класса UTexture 
-//UDialoge DialogueWave* UDlgContext::GetActiveNodeVoiceDialogueWave() const
-//{
-//	const UDlgNode* Node = GetActiveNode();
-//	if (!IsValid(Node))
-//	{
-//		return nullptr;
-//	}
-//
-//	return Node->GetNodeVoiceDialogueWave();
-//}
+UTexture2D* UDlgContext::GetActiveParticipantImage() const
+{
+	if (!IsValid(Dialogue))
+	{
+		return nullptr;
+	}
+
+	const UDlgNode* Node = GetActiveNode();
+	if (!IsValid(Node))
+	{
+		return nullptr;
+	}
+
+	FName SpeakerName = Node->GetNodeParticipantName();
+	UObject* const* Item = Participants.Find(SpeakerName);
+	if (Item == nullptr || !IsValid(*Item))
+	{
+		return nullptr;
+	}
+	return IDlgDialogueParticipant::Execute_GetParticipantIcon(*Item, SpeakerName, Node->GetSpeakerState());
+}
+
+
 //-ИТ
 UTexture2D* UDlgContext::GetActiveParticipantIcon() const
 {

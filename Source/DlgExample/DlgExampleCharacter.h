@@ -35,6 +35,9 @@ public:
 	ETextGender GetParticipantGender_Implementation() const override { return ETextGender::Neuter; }
 	FText GetParticipantDisplayName_Implementation(FName ActiveSpeaker) const override { return DlgParticipantDisplayName; }
 	UTexture2D* GetParticipantIcon_Implementation(FName ActiveSpeaker, FName ActiveSpeakerState) const override { return DlgParticipantIcon; }
+	//+хр
+	UTexture2D* GetParticipantImage_Implementation(FName ActiveSpeaker, FName ActiveSpeakerState) const override { return DlgParticipantIcon; }
+	//-хр
 
 	bool ModifyIntValue_Implementation(const FName& ValueName, bool bDelta, int32 Value) override;
 	bool ModifyFloatValue_Implementation(const FName& ValueName, bool bDelta, float Value) override;
