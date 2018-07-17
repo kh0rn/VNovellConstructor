@@ -103,12 +103,8 @@ void FDialogueSpeechSequenceEntry_Details::CustomizeChildren(TSharedRef<IPropert
 	// Image
 	//+ИТ
 	ImagePropertyRow = &StructBuilder.AddProperty(
-		StructPropertyHandle->GetChildHandle(GET_MEMBER_NAME_CHECKED(FDlgSpeechSequenceEntry, ImagePropertyRow)).ToSharedRef());
+		StructPropertyHandle->GetChildHandle(GET_MEMBER_NAME_CHECKED(FDlgSpeechSequenceEntry, ImageDialogue)).ToSharedRef());
 	ImagePropertyRow->Visibility(CREATE_VISIBILITY_CALLBACK(&Self::GetImageVisibility));
-
-	ImageDialoguePropertyRow = &StructBuilder.AddProperty(
-		StructPropertyHandle->GetChildHandle(GET_MEMBER_NAME_CHECKED(FDlgSpeechSequenceEntry, ImageDialoguePropertyRow)).ToSharedRef());
-	VoiceDialogueWavePropertyRow->Visibility(CREATE_VISIBILITY_CALLBACK(&Self::GetImageDialogueVisibility));
 	//-ИТ
 	// Edge Text
 	{
