@@ -18,6 +18,8 @@ class UDlgNode;
 class USoundWave;
 class UTexture;
 class UDialogueWave;
+class UDlgDialogueParticipant;
+class UTexture2D;
 struct FDlgTextArgument;
 
 /**
@@ -159,13 +161,13 @@ public:
 	/** Gets the voice of this Node as a SoundWave. */
 	virtual USoundWave* GetNodeVoiceSoundWave() const { return nullptr; }
 
+	/** Gets the voice of this Node as a DialogueWave. Only the first Dialogue context in the wave should be used. */
+	virtual UDialogueWave* GetNodeVoiceDialogueWave() const { return nullptr; }
+
 	/** Gets the voice of this Node as a image. */
 	//+ИТ
 	virtual UTexture2D* GetNodeImage() const { return nullptr; }
 	//-ИТ
-
-	/** Gets the voice of this Node as a DialogueWave. Only the first Dialogue context in the wave should be used. */
-	virtual UDialogueWave* GetNodeVoiceDialogueWave() const { return nullptr; }
 
 	/** Gets the speaker state ordered to this node (can be used e.g. for icon selection) */
 	virtual FName GetSpeakerState() const { return NAME_None; }

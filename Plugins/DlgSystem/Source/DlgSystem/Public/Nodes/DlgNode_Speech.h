@@ -50,7 +50,9 @@ public:
 	const FText& GetNodeText() const override { return (TextArguments.Num() > 0 && !ConstructedText.IsEmpty()) ? ConstructedText : Text; }
 	const FText& GetRawNodeText() const override { return Text; }
 	USoundWave* GetNodeVoiceSoundWave() const override { return VoiceSoundWave; }
+	//+ИТ
 	UTexture2D* GetNodeImage() const override { return ImageDialogue; }
+	//-ИТ
 	UDialogueWave* GetNodeVoiceDialogueWave() const override { return VoiceDialogueWave; }
 	FName GetSpeakerState() const override { return SpeakerState; }
 	void AddSpeakerStates(TSet<FName>& States) const { States.Add(SpeakerState); }

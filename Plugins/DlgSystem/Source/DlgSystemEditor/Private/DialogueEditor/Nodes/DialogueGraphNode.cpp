@@ -350,17 +350,13 @@ bool UDialogueGraphNode::HasImagePropertiesSet() const
 	{
 		return false;
 	}
-
-
-
-
+	
 	// Try simple node
 	if (DialogueNode->GetNodeImage() != nullptr)
 	{
 		return true;
 	}
-
-
+	
 	// Speech sequence node
 	if (IsSpeechSequenceNode())
 	{

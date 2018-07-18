@@ -33,7 +33,7 @@ Node Nodes
 		OwnerName "MrCube"
 		bCheckChildrenOnEvaluation False
 		VoiceSoundWave ""
-		ImageDialogue "/Game/Art/RedIcon.RedIcon"
+		ImageDialogue "/Game/Mannequin/Character/Materials/MaterialLayers/T_ML_Rubber_Blue_01_D.T_ML_Rubber_Blue_01_D"
 		VoiceDialogueWave ""
 		EnterConditions { {  Strength "EDlgConditionStrength::DlgConditionStrengthStrong" ConditionType "EDlgConditionType::DlgConditionNodeVisited" ParticipantName "None" CallbackName "None" Operation "EDlgOperation::DlgEqual" CompareType "EDlgCompareType::DlgCompareToConst" OtherParticipantName "None" OtherVariableName "None" IntValue 0 FloatValue 0.0 NameValue "None" bBoolValue False bLongTermMemory True } }
 		Children { {  TargetIndex 2 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
@@ -47,7 +47,7 @@ Node Nodes
 		OwnerName "MrCube"
 		bCheckChildrenOnEvaluation False
 		VoiceSoundWave ""
-		ImageDialogue "/Game/Art/RedIcon.RedIcon"
+		ImageDialogue "/Game/Mannequin/Character/Materials/MaterialLayers/T_ML_Rubber_Blue_01_N.T_ML_Rubber_Blue_01_N"
 		VoiceDialogueWave ""
 		Children { {  TargetIndex 2 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 	}
@@ -77,7 +77,7 @@ Node Nodes
 		OwnerName "MyCharacterName"
 		bCheckChildrenOnEvaluation False
 		VoiceSoundWave ""
-		ImageDialogue "/Game/Art/BlueIcon.BlueIcon"
+		ImageDialogue "/Game/Art/WhiteIcon.WhiteIcon"
 		VoiceDialogueWave ""
 		Children { {  TargetIndex 5 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 	}
@@ -114,7 +114,7 @@ Node Nodes
 		OwnerName "MrCube"
 		bCheckChildrenOnEvaluation False
 		VoiceSoundWave ""
-		ImageDialogue ""
+		ImageDialogue "/Game/Mannequin/Character/Textures/UE4Man_Logo_N.UE4Man_Logo_N"
 		VoiceDialogueWave ""
 		EnterEvents { {  ParticipantName "MyCharacterName" EventType "EDlgEventType::DlgEventModifyInt" EventName "ColorChangeRequest" IntValue 1 FloatValue 0.0 NameValue "None" bDelta True bValue False } }
 		Children
@@ -134,7 +134,7 @@ Just leave me alone!"
 		OwnerName "MrCube"
 		bCheckChildrenOnEvaluation False
 		VoiceSoundWave ""
-		ImageDialogue ""
+		ImageDialogue "/Game/Mannequin/Character/Textures/UE4_Mannequin_MAT_MASKA.UE4_Mannequin_MAT_MASKA"
 		VoiceDialogueWave ""
 		Children { {  TargetIndex 11 Text "Finish" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 	}

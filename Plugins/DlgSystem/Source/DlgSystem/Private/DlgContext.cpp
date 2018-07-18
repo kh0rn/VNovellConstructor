@@ -179,8 +179,7 @@ UTexture2D* UDlgContext::GetActiveNodeImage() const
 
 	return Node->GetNodeImage();
 }
-
-//+ИТ
+ 
 //вызов метода класса для предоставление диалога выбора класса UTexture 
 UTexture2D* UDlgContext::GetActiveParticipantImage() const
 {
@@ -201,11 +200,13 @@ UTexture2D* UDlgContext::GetActiveParticipantImage() const
 	{
 		return nullptr;
 	}
-	return IDlgDialogueParticipant::Execute_GetParticipantIcon(*Item, SpeakerName, Node->GetSpeakerState());
+
+	//return IDlgDialogueParticipant::Execute_GetParticipantIcon(*Item, SpeakerName, Node->GetSpeakerState());
+
+	return Node->GetNodeImage();
 }
-
-
 //-ИТ
+
 UTexture2D* UDlgContext::GetActiveParticipantIcon() const
 {
 	if (!IsValid(Dialogue))
