@@ -35,7 +35,7 @@ Node Nodes
 		VoiceSoundWave ""
 		ImageDialogue "/Game/Mannequin/Character/Materials/MaterialLayers/T_ML_Rubber_Blue_01_D.T_ML_Rubber_Blue_01_D"
 		VoiceDialogueWave ""
-		EnterConditions { {  Strength "EDlgConditionStrength::DlgConditionStrengthStrong" ConditionType "EDlgConditionType::DlgConditionNodeVisited" ParticipantName "None" CallbackName "None" Operation "EDlgOperation::DlgEqual" CompareType "EDlgCompareType::DlgCompareToConst" OtherParticipantName "None" OtherVariableName "None" IntValue 0 FloatValue 0.0 NameValue "None" bBoolValue False bLongTermMemory True } }
+		EnterConditions { {  Strength "EDlgConditionStrength::DlgConditionStrengthStrong" ConditionType "EDlgConditionType::DlgConditionNodeVisited" ParticipantName "None" CallbackName "None" Operation "EDlgOperation::DlgEqual" CompareType "EDlgCompareType::DlgCompareToConst" OtherParticipantName "None" OtherVariableName "None" IntValue 0 FloatValue 0.0 NameValue "None" bBoolValue True bLongTermMemory True } }
 		Children { {  TargetIndex 2 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 	}
 	// 1

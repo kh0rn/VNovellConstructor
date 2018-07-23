@@ -1,4 +1,4 @@
-// Copyright 2017-2018 Csaba Molnar, Daniel Butum
+// Copyright 2017-2018 Csaba Molnar, Daniel Butum, Kanev Sergey
 #include "DlgSystemSettings.h"
 
 #include "GameFramework/Character.h"

@@ -1,4 +1,4 @@
-// Copyright 2017-2018 Csaba Molnar, Daniel Butum
+// Copyright 2017-2018 Csaba Molnar, Daniel Butum, Kanev Sergey
 #include "DialogueTextArgument_Details.h"
 
 #include "IDetailPropertyRow.h"

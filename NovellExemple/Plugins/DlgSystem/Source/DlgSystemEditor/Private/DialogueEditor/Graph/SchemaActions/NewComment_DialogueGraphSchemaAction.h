@@ -1,4 +1,4 @@
-// Copyright 2017-2018 Csaba Molnar, Daniel Butum
+// Copyright 2017-2018 Csaba Molnar, Daniel Butum, Kanev Sergey
 #pragma once
 
 #include "EdGraph/EdGraphSchema.h"
