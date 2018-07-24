@@ -88,20 +88,73 @@ Node Nodes
 		bCheckChildrenOnEvaluation False
 	}
 	// 5
+	Node_Selector 
+	{
+		SelectorType "EDlgNodeSelectorType::DlgNodeSelectorFirst"
+		OwnerName "ActorMiku"
+		bCheckChildrenOnEvaluation True
+		Children
+		{
+			{
+				TargetIndex 6
+				Text "Next"
+				SpeakerState "None"
+				bIncludeInAllOptionListIfUnsatisfied True
+				Conditions { {  Strength "EDlgConditionStrength::DlgConditionStrengthStrong" ConditionType "EDlgConditionType::DlgConditionIntCall" ParticipantName "MyCharacterName" CallbackName "ChangeColorReq" Operation "EDlgOperation::DlgLessOrEqual" CompareType "EDlgCompareType::DlgCompareToConst" OtherParticipantName "None" OtherVariableName "None" IntValue 3 FloatValue 0.0 NameValue "None" bBoolValue True bLongTermMemory True } }
+			}
+			{  TargetIndex 7 Text "" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True }
+		}
+	}
+	// 6
 	Node_Speech 
 	{
 		Text "Sure. What color would you like to see?"
-		SpeakerState "Angry"
+		SpeakerState "None"
 		bIsVirtualParent False
 		OwnerName "ActorMiku"
 		bCheckChildrenOnEvaluation False
 		VoiceSoundWave ""
 		ImageDialogue ""
 		VoiceDialogueWave ""
-		EnterEvents { {  ParticipantName "MyCharacterName" EventType "EDlgEventType::DlgEventModifyInt" EventName "ColorChangeRequest" IntValue 1 FloatValue 0.0 NameValue "None" bDelta True bValue False } }
-		Children { {  TargetIndex 6 Text "Finish" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
+		Children
+		{
+			{  TargetIndex 8 Text "Finish" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True }
+			{  TargetIndex 9 Text "" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True }
+			{  TargetIndex 10 Text "" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True }
+		}
 	}
-	// 6
+	// 7
+	Node_Speech 
+	{
+		Text "I cant keep change my color"
+		SpeakerState "None"
+		bIsVirtualParent False
+		OwnerName "ActorMiku"
+		bCheckChildrenOnEvaluation False
+		VoiceSoundWave ""
+		ImageDialogue ""
+		VoiceDialogueWave ""
+		Children { {  TargetIndex 11 Text "Finish" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
+	}
+	// 8
+	Node_End 
+	{
+		OwnerName "ActorMiku"
+		bCheckChildrenOnEvaluation False
+	}
+	// 9
+	Node_End 
+	{
+		OwnerName "ActorMiku"
+		bCheckChildrenOnEvaluation False
+	}
+	// 10
+	Node_End 
+	{
+		OwnerName "ActorMiku"
+		bCheckChildrenOnEvaluation False
+	}
+	// 11
 	Node_End 
 	{
 		OwnerName "ActorMiku"
