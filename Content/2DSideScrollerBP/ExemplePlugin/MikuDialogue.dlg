@@ -33,7 +33,7 @@ Node Nodes
 		OwnerName "ActorMiku"
 		bCheckChildrenOnEvaluation False
 		VoiceSoundWave ""
-		ImageDialogue "/Game/2DSideScrollerBP/Images/src/Idle/Idle_000.Idle_000"
+		ImageDialogue "/Game/2DSideScrollerBP/Images/src/miku_multi.miku_multi"
 		VoiceDialogueWave ""
 		EnterConditions { {  Strength "EDlgConditionStrength::DlgConditionStrengthStrong" ConditionType "EDlgConditionType::DlgConditionNodeVisited" ParticipantName "None" CallbackName "None" Operation "EDlgOperation::DlgEqual" CompareType "EDlgCompareType::DlgCompareToConst" OtherParticipantName "None" OtherVariableName "None" IntValue 2 FloatValue 0.0 NameValue "None" bBoolValue False bLongTermMemory True } }
 		Children { {  TargetIndex 2 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
@@ -47,7 +47,7 @@ Node Nodes
 		OwnerName "ActorMiku"
 		bCheckChildrenOnEvaluation False
 		VoiceSoundWave ""
-		ImageDialogue "/Game/2DSideScrollerBP/Images/src/Idle/Idle_000.Idle_000"
+		ImageDialogue "/Game/2DSideScrollerBP/Images/src/miku_multi.miku_multi"
 		VoiceDialogueWave ""
 		Children { {  TargetIndex 2 Text "Next" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 	}
@@ -60,7 +60,7 @@ Node Nodes
 		OwnerName "ActorMiku"
 		bCheckChildrenOnEvaluation False
 		VoiceSoundWave ""
-		ImageDialogue "/Game/2DSideScrollerBP/Images/src/Idle/Idle_002.Idle_002"
+		ImageDialogue "/Game/2DSideScrollerBP/Images/src/miku_multi.miku_multi"
 		VoiceDialogueWave ""
 		Children
 		{
@@ -77,7 +77,7 @@ Node Nodes
 		OwnerName "MyCharacterName"
 		bCheckChildrenOnEvaluation False
 		VoiceSoundWave ""
-		ImageDialogue "/Game/2DSideScrollerBP/Images/src/Idle/Idle_000.Idle_000"
+		ImageDialogue "/Game/2DSideScrollerBP/Images/src/miku_multi.miku_multi"
 		VoiceDialogueWave ""
 		Children { {  TargetIndex 5 Text "Ask to change color" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 	}
@@ -114,7 +114,7 @@ Node Nodes
 		OwnerName "ActorMiku"
 		bCheckChildrenOnEvaluation False
 		VoiceSoundWave ""
-		ImageDialogue "/Game/2DSideScrollerBP/Images/src/Idle/Idle_000.Idle_000"
+		ImageDialogue "/Game/2DSideScrollerBP/Images/src/miku_multi.miku_multi"
 		VoiceDialogueWave ""
 		EnterEvents { {  ParticipantName "MyCharacterName" EventType "EDlgEventType::DlgEventModifyInt" EventName "ColorChangeRequest" IntValue 1 FloatValue 0.0 NameValue "None" bDelta True bValue False } }
 		Children
@@ -133,7 +133,7 @@ Node Nodes
 		OwnerName "ActorMiku"
 		bCheckChildrenOnEvaluation False
 		VoiceSoundWave ""
-		ImageDialogue "/Game/2DSideScrollerBP/Images/src/Idle/Idle_024.Idle_024"
+		ImageDialogue "/Game/2DSideScrollerBP/Images/src/miku_multi.miku_multi"
 		VoiceDialogueWave ""
 		Children { {  TargetIndex 11 Text "Finish" SpeakerState "None" bIncludeInAllOptionListIfUnsatisfied True } }
 	}

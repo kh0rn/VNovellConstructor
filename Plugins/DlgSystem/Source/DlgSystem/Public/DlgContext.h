@@ -4,11 +4,13 @@
 #include "DlgDialogue.h"
 #include "DlgNode.h"
 #include "DlgContext.generated.h"
-
+ 
 class USoundWave;
 class UTexture2D;
 class UDialogueWave;
 class UDlgDialogue;
+class UImage;
+class SlateBrush;
 
 /** Used to store temporary state of edges */
 struct FDlgEdgeData
@@ -36,6 +38,21 @@ class DLGSYSTEM_API UDlgContext : public UObject
 	typedef UDlgContext Self;
 public:
 
+	//+ИТ
+	//ф-ции для анимации изображения
+
+	UFUNCTION(BlueprintCallable, Category = Animation)
+		void SetCurrentFrame(int32 Frame);
+
+	UFUNCTION(BlueprintCallable, Category = Animation)
+		void PlayAnimation();
+
+	UFUNCTION(BlueprintCallable, Category = Animation)
+		void StopAnimation();
+
+	virtual void SynchronizePropertiesAnimation();
+
+	//-ИТ
 	/**
 	 * Chooses the option with index OptionIndex of the active node index and it enters that node.
 	 * Typically called based on user input.
@@ -132,7 +149,7 @@ public:
 	//+ИТ
 	/** Gets the Icon associated with the active node participant name (owner name). */
 	UFUNCTION(BlueprintPure, Category = DialogueDataImage)
-		UTexture2D* GetActiveParticipantImage() const;
+	UImage* GetActiveParticipantImage() const;
 	//-ИТ
 	
 	/** Gets the Object associated with the active node participant name (owner name). */
@@ -182,10 +199,14 @@ protected:
 	virtual class UDlgNode* GetActiveNode() { return nullptr; }
 	virtual const class UDlgNode* GetActiveNode() const { return nullptr; }
 
+	//+ИТ
+	virtual const class FSlateBrush* GetImageBrush() const { return imageBrush; }
 protected:
 	/** Current Dialogue used in this context at runtime. */
 	UPROPERTY()
 	UDlgDialogue* Dialogue;
+
+	UImage* CurrentAnimationImage;
 
 	/**
 	 * All object is expected to implement the IDlgDialogueParticipant interface
@@ -209,4 +230,19 @@ protected:
 
 	/** Node indices visited in this specific Dialogue instance (isn't serialized) */
 	TSet<int32> VisitedNodeIndices;
+
+	//+ИТ
+	//ф-ции для анимации изображения
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+		int32 FramesPerSecond = 10;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+		int32 CurrentFrame = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+		int32 TotalFrames = 1;
+ 
+	const FSlateBrush* imageBrush;
+	//-ИТ
 };

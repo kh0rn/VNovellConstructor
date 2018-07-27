@@ -5,6 +5,43 @@
 #include "DlgDialogueParticipant.h"
 #include "DlgMemory.h"
 
+//+ИТ
+void UDlgContext::SetCurrentFrame(int32 Frame)
+{
+	CurrentFrame = Frame;
+	if (CurrentFrame < 0) CurrentFrame = 0;
+	if (CurrentFrame > TotalFrames - 1) CurrentFrame = TotalFrames - 1;
+	SynchronizePropertiesAnimation();
+}
+
+void UDlgContext::PlayAnimation()
+{
+}
+
+void UDlgContext::StopAnimation()
+{
+}
+
+void UDlgContext::SynchronizePropertiesAnimation()
+{
+ 
+	UTexture2D* Texture = Cast<UTexture2D>(imageBrush->GetResourceObject());
+	if (Texture == nullptr) return;
+	FVector2D TextureSize(Texture->GetSizeX(), Texture->GetSizeY());
+
+	int32 MaxColumns = FMath::FloorToInt(TextureSize.X / imageBrush->ImageSize.X);
+	int32 Row = FMath::FloorToInt(CurrentFrame / MaxColumns);
+	int32 Column = CurrentFrame % MaxColumns;
+
+	FVector2D Min(imageBrush->ImageSize.X * Column, imageBrush->ImageSize.Y * Row);
+	FVector2D Max = Min + imageBrush->ImageSize;
+	FBox2D UVCoordinates(Min / TextureSize, Max / TextureSize);
+	UVCoordinates.bIsValid = true;
+
+	imageBrush->SetUVRegion(MoveTemp(UVCoordinates));
+}
+//-ИТ
+
 bool UDlgContext::ChooseChildBasedOnAllOptionIndex(int32 Index)
 {
 	if (!AllChildren.IsValidIndex(Index))
@@ -176,12 +213,25 @@ UTexture2D* UDlgContext::GetActiveNodeImage() const
 	{
 		return nullptr;
 	}
+	//получаем изображение
+	const UTexture2D* Texture = Node->GetNodeImage();
+ 
+	imageBrush.ImageSize = FVector2D(Texture.GetSizeX, Texture.GetSizeY);
+	 
+	imageBrush.SetResourceObject(Texture);
 
-	return Node->GetNodeImage();
+	CurrentAnimationImage = NewObject<UImage>();
+	CurrentAnimationImage->SetBrush(imageBrush);
+
+	CurrentFrame++;
+	if (CurrentFrame > TotalFrames - 1) CurrentFrame = 0;
+	SynchronizePropertiesAnimation();
+
+	return CurrentAnimationImage;
 }
  
 //вызов метода класса для предоставление диалога выбора класса UTexture 
-UTexture2D* UDlgContext::GetActiveParticipantImage() const
+UImage* UDlgContext::GetActiveParticipantImage() const
 {
 	if (!IsValid(Dialogue))
 	{
