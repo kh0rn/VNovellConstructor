@@ -25,20 +25,20 @@ void UDlgContext::StopAnimation()
 void UDlgContext::SynchronizePropertiesAnimation()
 {
  
-	UTexture2D* Texture = Cast<UTexture2D>(imageBrush->GetResourceObject());
+	/*UTexture2D* Texture = Cast<UTexture2D>(GetImageBrush().GetResourceObject());
 	if (Texture == nullptr) return;
-	FVector2D TextureSize(Texture->GetSizeX(), Texture->GetSizeY());
+	FVector2D TextureSize(Texture.GetSizeX(), Texture.GetSizeY());
 
 	int32 MaxColumns = FMath::FloorToInt(TextureSize.X / imageBrush->ImageSize.X);
 	int32 Row = FMath::FloorToInt(CurrentFrame / MaxColumns);
 	int32 Column = CurrentFrame % MaxColumns;
 
-	FVector2D Min(imageBrush->ImageSize.X * Column, imageBrush->ImageSize.Y * Row);
-	FVector2D Max = Min + imageBrush->ImageSize;
+	FVector2D Min(imageBrush.ImageSize.X * Column, imageBrush.ImageSize.Y * Row);
+	FVector2D Max = Min + imageBrush.ImageSize;
 	FBox2D UVCoordinates(Min / TextureSize, Max / TextureSize);
 	UVCoordinates.bIsValid = true;
 
-	imageBrush->SetUVRegion(MoveTemp(UVCoordinates));
+	imageBrush->SetUVRegion(MoveTemp(UVCoordinates));*/
 }
 //-ИТ
 
@@ -206,7 +206,7 @@ UDialogueWave* UDlgContext::GetActiveNodeVoiceDialogueWave() const
 
 //+ИТ
 //вызов метода получить изображение в контексте нода
-UTexture2D* UDlgContext::GetActiveNodeImage() const
+UImage* UDlgContext::GetActiveNodeImage() const
 {
 	const UDlgNode* Node = GetActiveNode();
 	if (!IsValid(Node))
@@ -214,24 +214,32 @@ UTexture2D* UDlgContext::GetActiveNodeImage() const
 		return nullptr;
 	}
 	//получаем изображение
-	const UTexture2D* Texture = Node->GetNodeImage();
- 
-	imageBrush.ImageSize = FVector2D(Texture.GetSizeX, Texture.GetSizeY);
+	UTexture2D* Texture = Node->GetNodeImage();
+
+	TAssetPtr<UTexture2D> icon;
+	FSlateBrush imageBrusher{};
+	//imageBrusher.ImageSize = FVector2D(Texture->GetSizeX, Texture->GetSizeY);
+	//imageBrusher.SetResourceObject(Texture);
+
+	UImage *image = NewObject<UImage>(); // im creating the image widget in code as well
+	image->SetBrush(imageBrusher);
+
+	/*imageBrush.ImageSize = FVector2D(Texture.GetSizeX, Texture.GetSizeY);
 	 
 	imageBrush.SetResourceObject(Texture);
 
-	CurrentAnimationImage = NewObject<UImage>();
+	CurrentAnimationImage = new NewObject(UImage);
 	CurrentAnimationImage->SetBrush(imageBrush);
 
 	CurrentFrame++;
 	if (CurrentFrame > TotalFrames - 1) CurrentFrame = 0;
-	SynchronizePropertiesAnimation();
+	SynchronizePropertiesAnimation();*/
 
 	return CurrentAnimationImage;
 }
  
 //вызов метода класса для предоставление диалога выбора класса UTexture 
-UImage* UDlgContext::GetActiveParticipantImage() const
+UTexture2D* UDlgContext::GetActiveParticipantImage() const
 {
 	if (!IsValid(Dialogue))
 	{

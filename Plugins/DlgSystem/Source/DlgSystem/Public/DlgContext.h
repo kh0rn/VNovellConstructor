@@ -4,7 +4,8 @@
 #include "DlgDialogue.h"
 #include "DlgNode.h"
 #include "DlgContext.generated.h"
- 
+
+
 class USoundWave;
 class UTexture2D;
 class UDialogueWave;
@@ -53,6 +54,23 @@ public:
 	virtual void SynchronizePropertiesAnimation();
 
 	//-ИТ
+	//+ИТ
+	//ф-ции для анимации изображения
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+		int32 FramesPerSecond = 10;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+		int32 CurrentFrame = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+		int32 TotalFrames = 1;
+
+	
+	FSlateBrush* imageBrush;
+	//-ИТ
+
+
 	/**
 	 * Chooses the option with index OptionIndex of the active node index and it enters that node.
 	 * Typically called based on user input.
@@ -138,9 +156,7 @@ public:
 	UDialogueWave* GetActiveNodeVoiceDialogueWave() const;
 
 	UFUNCTION(BlueprintPure, Category = DialogueDataImage)
-	UTexture2D* GetActiveNodeImage() const;
-
-
+	 UImage* GetActiveNodeImage() const;
 
 	/** Gets the Icon associated with the active node participant name (owner name). */
 	UFUNCTION(BlueprintPure, Category = DialogueData)
@@ -149,7 +165,10 @@ public:
 	//+ИТ
 	/** Gets the Icon associated with the active node participant name (owner name). */
 	UFUNCTION(BlueprintPure, Category = DialogueDataImage)
-	UImage* GetActiveParticipantImage() const;
+	UTexture2D* GetActiveParticipantImage() const;
+
+
+	UImage* CurrentAnimationImage;
 	//-ИТ
 	
 	/** Gets the Object associated with the active node participant name (owner name). */
@@ -200,13 +219,12 @@ protected:
 	virtual const class UDlgNode* GetActiveNode() const { return nullptr; }
 
 	//+ИТ
-	virtual const class FSlateBrush* GetImageBrush() const { return imageBrush; }
+	//virtual const class FSlateBrush* GetImageBrush() const { return imageBrush; }
 protected:
 	/** Current Dialogue used in this context at runtime. */
 	UPROPERTY()
 	UDlgDialogue* Dialogue;
 
-	UImage* CurrentAnimationImage;
 
 	/**
 	 * All object is expected to implement the IDlgDialogueParticipant interface
@@ -231,18 +249,5 @@ protected:
 	/** Node indices visited in this specific Dialogue instance (isn't serialized) */
 	TSet<int32> VisitedNodeIndices;
 
-	//+ИТ
-	//ф-ции для анимации изображения
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
-		int32 FramesPerSecond = 10;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
-		int32 CurrentFrame = 0;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
-		int32 TotalFrames = 1;
- 
-	const FSlateBrush* imageBrush;
-	//-ИТ
+	
 };
