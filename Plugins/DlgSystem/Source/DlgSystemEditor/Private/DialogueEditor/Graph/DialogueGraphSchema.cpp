@@ -58,6 +58,7 @@ void UDialogueGraphSchema::GetGraphContextActions(FGraphContextMenuBuilder& Cont
 	GetCommentAction(ContextMenuBuilder, ContextMenuBuilder.CurrentGraph);
 	//+ИТ
 	GetBGAction(ContextMenuBuilder, ContextMenuBuilder.CurrentGraph);
+	GetAnimationImageAction(ContextMenuBuilder, ContextMenuBuilder.CurrentGraph);
 	//-ИТ
 	// Menu not from a pin, directly right clicked on the graph canvas
 	if (!ContextMenuBuilder.FromPin)
@@ -424,6 +425,26 @@ void UDialogueGraphSchema::GetBGAction(FGraphActionMenuBuilder& ActionMenuBuilde
 	constexpr int32 Grouping = 1;
 
 	TSharedPtr<FNewComment_DialogueGraphSchemaAction> NewAction(new FNewComment_DialogueGraphSchemaAction(
+		NODE_CATEGORY_Graph, MenuDescription, ToolTip, Grouping));
+	ActionMenuBuilder.AddAction(NewAction);
+}
+
+void UDialogueGraphSchema::GetAnimationImageAction(FGraphActionMenuBuilder& ActionMenuBuilder, const UEdGraph* CurrentGraph) const
+{
+	// Do not allow to spawn a comment when we drag are dragging from a selected pin.
+	if (ActionMenuBuilder.FromPin)
+	{
+		return;
+	}
+
+	// The rest of the comment actions are in the UEdGraphSchema::GetContextMenuActions
+	const bool bIsManyNodesSelected = CurrentGraph ? GetNodeSelectionCount(CurrentGraph) > 0 : false;
+	const FText MenuDescription = bIsManyNodesSelected ?
+		LOCTEXT("CreateAnimationImageAction", "Create animation image to join nodes") : LOCTEXT("AddBGAction", "Add animation image for nodes...");
+	const FText ToolTip = LOCTEXT("CreateAnimationImageToolTip", "Creates a animation image.");
+	constexpr int32 Grouping = 1;
+
+	TSharedPtr<FNewComment_DialogueGraphSchemaAction> NewAction(new DL FNewComment_DialogueGraphSchemaAction(
 		NODE_CATEGORY_Graph, MenuDescription, ToolTip, Grouping));
 	ActionMenuBuilder.AddAction(NewAction);
 }

@@ -9,6 +9,7 @@
 #include "DialogueGraphConnectionDrawingPolicy.h"
 #include "SchemaActions/NewComment_DialogueGraphSchemaAction.h"
 
+#include "DlgSystem/DlgAnimatedImage.h"
 #include "DialogueGraphSchema.generated.h"
 
 class UDialogueGraphNode;
@@ -167,7 +168,11 @@ private:
 	/** Adds action for creating a comment */
 	void GetCommentAction(FGraphActionMenuBuilder& ActionMenuBuilder, const UEdGraph* CurrentGraph = nullptr) const;
 
+	//+ИТ
 	void GetBGAction(FGraphActionMenuBuilder & ActionMenuBuilder, const UEdGraph * CurrentGraph) const;
+
+	void GetAnimationImageAction(FGraphActionMenuBuilder & ActionMenuBuilder, const UEdGraph * CurrentGraph) const;
+	//-ИТ
 
 	/** Adds conversion actions for differet nodes. */
 	void GetConvertActions(FGraphActionMenuBuilder& ActionMenuBuilder, const UEdGraph* CurrentGraph) const;
