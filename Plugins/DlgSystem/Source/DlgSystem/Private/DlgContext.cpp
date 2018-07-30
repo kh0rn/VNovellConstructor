@@ -217,12 +217,12 @@ UImage* UDlgContext::GetActiveNodeImage() const
 	UTexture2D* Texture = Node->GetNodeImage();
 
 	TAssetPtr<UTexture2D> icon;
-	FSlateBrush imageBrusher{};
+	//FSlateBrush imageBrusher{};
 	//imageBrusher.ImageSize = FVector2D(Texture->GetSizeX, Texture->GetSizeY);
 	//imageBrusher.SetResourceObject(Texture);
 
-	UImage *image = NewObject<UImage>(); // im creating the image widget in code as well
-	image->SetBrush(imageBrusher);
+	//UImage *image = NewObject<UImage>(); // im creating the image widget in code as well
+	//image->SetBrush(imageBrusher);
 
 	/*imageBrush.ImageSize = FVector2D(Texture.GetSizeX, Texture.GetSizeY);
 	 

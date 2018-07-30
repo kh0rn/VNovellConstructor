@@ -33,7 +33,8 @@ public class DlgSystem : ModuleRules
 			new string[] {
 				"Core",
 				"Json",
-				"JsonUtilities"
+				"JsonUtilities",
+                "UMG"
 				// ... add other public dependencies that you statically link with here ...
 			});
 
@@ -47,7 +48,9 @@ public class DlgSystem : ModuleRules
 				// UI
 				"SlateCore",
 				"Slate",
-				"InputCore"
+				"InputCore",
+				"Slate", // AnimationImage
+				"SlateCore" // AnimationImage
 				// ... add private dependencies that you statically link with here ...
 			});
 

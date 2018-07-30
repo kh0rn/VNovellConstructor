@@ -67,7 +67,7 @@ public:
 		int32 TotalFrames = 1;
 
 	
-	FSlateBrush* imageBrush;
+	//FSlateBrush* imageBrush;
 	//-ИТ
 
 

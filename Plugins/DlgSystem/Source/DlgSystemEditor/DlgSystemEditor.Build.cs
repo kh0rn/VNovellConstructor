@@ -41,6 +41,7 @@ public class DlgSystemEditor : ModuleRules
 			new string[] {
 				"Core",
 				"DlgSystem",
+                "UMG",
 				// ... add other public dependencies that you statically link with here ...
 			});
 
@@ -58,6 +59,8 @@ public class DlgSystemEditor : ModuleRules
 				"Slate",
 				"EditorStyle",
 				"MessageLog",
+				"Slate", // AnimationImage
+				"SlateCore", // AnimationImage
 
 				// Accessing the menu
 				"WorkspaceMenuStructure",
