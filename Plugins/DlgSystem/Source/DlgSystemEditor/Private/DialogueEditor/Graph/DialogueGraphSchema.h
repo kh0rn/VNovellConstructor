@@ -8,8 +8,7 @@
 #include "DialogueEditor/DialogueEditorUtilities.h"
 #include "DialogueGraphConnectionDrawingPolicy.h"
 #include "SchemaActions/NewComment_DialogueGraphSchemaAction.h"
-
-#include "DlgSystem/DlgAnimatedImage.h"
+ 
 #include "DialogueGraphSchema.generated.h"
 
 class UDialogueGraphNode;

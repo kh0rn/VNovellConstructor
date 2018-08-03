@@ -444,7 +444,7 @@ void UDialogueGraphSchema::GetAnimationImageAction(FGraphActionMenuBuilder& Acti
 	const FText ToolTip = LOCTEXT("CreateAnimationImageToolTip", "Creates a animation image.");
 	constexpr int32 Grouping = 1;
 
-	TSharedPtr<FNewComment_DialogueGraphSchemaAction> NewAction(new DL FNewComment_DialogueGraphSchemaAction(
+	TSharedPtr<FNewComment_DialogueGraphSchemaAction> NewAction(new FNewComment_DialogueGraphSchemaAction(
 		NODE_CATEGORY_Graph, MenuDescription, ToolTip, Grouping));
 	ActionMenuBuilder.AddAction(NewAction);
 }

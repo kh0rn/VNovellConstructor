@@ -6,41 +6,27 @@
 #include "DlgMemory.h"
 
 //+ИТ
-void UDlgContext::SetCurrentFrame(int32 Frame)
-{
-	CurrentFrame = Frame;
-	if (CurrentFrame < 0) CurrentFrame = 0;
-	if (CurrentFrame > TotalFrames - 1) CurrentFrame = TotalFrames - 1;
-	SynchronizePropertiesAnimation();
-}
-
-void UDlgContext::PlayAnimation()
-{
-}
-
-void UDlgContext::StopAnimation()
-{
-}
-
-void UDlgContext::SynchronizePropertiesAnimation()
-{
  
-	/*UTexture2D* Texture = Cast<UTexture2D>(GetImageBrush().GetResourceObject());
-	if (Texture == nullptr) return;
-	FVector2D TextureSize(Texture.GetSizeX(), Texture.GetSizeY());
-
-	int32 MaxColumns = FMath::FloorToInt(TextureSize.X / imageBrush->ImageSize.X);
-	int32 Row = FMath::FloorToInt(CurrentFrame / MaxColumns);
-	int32 Column = CurrentFrame % MaxColumns;
-
-	FVector2D Min(imageBrush.ImageSize.X * Column, imageBrush.ImageSize.Y * Row);
-	FVector2D Max = Min + imageBrush.ImageSize;
-	FBox2D UVCoordinates(Min / TextureSize, Max / TextureSize);
-	UVCoordinates.bIsValid = true;
-
-	imageBrush->SetUVRegion(MoveTemp(UVCoordinates));*/
-}
-//-ИТ
+//
+//void UDlgContext::SynchronizePropertiesAnimation()
+//{
+// 
+//	/*UTexture2D* Texture = Cast<UTexture2D>(GetImageBrush().GetResourceObject());
+//	if (Texture == nullptr) return;
+//	FVector2D TextureSize(Texture.GetSizeX(), Texture.GetSizeY());
+//
+//	int32 MaxColumns = FMath::FloorToInt(TextureSize.X / imageBrush->ImageSize.X);
+//	int32 Row = FMath::FloorToInt(CurrentFrame / MaxColumns);
+//	int32 Column = CurrentFrame % MaxColumns;
+//
+//	FVector2D Min(imageBrush.ImageSize.X * Column, imageBrush.ImageSize.Y * Row);
+//	FVector2D Max = Min + imageBrush.ImageSize;
+//	FBox2D UVCoordinates(Min / TextureSize, Max / TextureSize);
+//	UVCoordinates.bIsValid = true;
+//
+//	imageBrush->SetUVRegion(MoveTemp(UVCoordinates));*/
+//}
+////-ИТ
 
 bool UDlgContext::ChooseChildBasedOnAllOptionIndex(int32 Index)
 {
