@@ -49,7 +49,7 @@ public:
 	//+ИТ
 	//ф-ции для анимации изображения
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+	/*UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
 		int32 FramesPerSecond = 10;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
@@ -57,7 +57,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
 		int32 TotalFrames = 1;
-
+*/
 
 	//FSlateBrush* imageBrush;
 	//-ИТ
@@ -257,16 +257,16 @@ class UAnimationImage : public UImage
 	GENERATED_BODY()
 
 public:
-	//UFUNCTION(BlueprintCallable, Category = Animation)
-	//	void SetCurrentFrame(int32 Frame);
+	UFUNCTION(BlueprintCallable, Category = Animation)
+	void SetCurrentFrame(int32 Frame);
 
-	//UFUNCTION(BlueprintCallable, Category = Animation)
-	//	void Play();
+	UFUNCTION(BlueprintCallable, Category = Animation)
+	void Play();
 
-	//UFUNCTION(BlueprintCallable, Category = Animation)
-	//	void Stop();
+	UFUNCTION(BlueprintCallable, Category = Animation)
+	void Stop();
 
-	//virtual void SynchronizeProperties();
+	virtual void SynchronizeProperties();
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
@@ -277,6 +277,12 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
 		int32 TotalFrames = 1;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+	int32 CountColumns = 4;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+	bool StaticImage = false;
 
 	void TimerTick();
 

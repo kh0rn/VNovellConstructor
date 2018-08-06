@@ -358,3 +358,66 @@ bool UDlgContext::IsEdgeConnectedToVisitedNode(int32 Index, bool bLocalHistory, 
 		return FDlgMemory::GetInstance()->IsNodeVisited(Dialogue->GetDlgGuid(), TargetIndex);
 	}
 }
+
+//+ИТ
+void UAnimationImage::SetCurrentFrame(int32 Frame)
+{
+	CurrentFrame = Frame;
+	if (CurrentFrame < 0) CurrentFrame = 0;
+	if (CurrentFrame > TotalFrames - 1) CurrentFrame = TotalFrames - 1;
+	SynchronizeProperties();
+}
+
+void UAnimationImage::SynchronizeProperties()
+{
+	Super::SynchronizeProperties();
+
+	UTexture2D* Texture = Cast<UTexture2D>(Brush.GetResourceObject());
+	if (Texture == nullptr) return;
+	FVector2D TextureSize(Texture->GetSizeX(), Texture->GetSizeY());
+
+	//int32 MaxColumns = FMath::FloorToInt(TextureSize.X / Brush.ImageSize.X);
+	int32 MaxColumns = CountColumns;
+	int32 Row = FMath::FloorToInt(CurrentFrame / MaxColumns);
+	int32 Column = CurrentFrame % MaxColumns;
+
+	//FVector2D Min(Brush.ImageSize.X * Column, Brush.ImageSize.Y * Row);
+	FVector2D Min(Brush.ImageSize.X * Column, Brush.ImageSize.Y * Row);
+	FVector2D Max = Min + Brush.ImageSize;
+	FBox2D UVCoordinates(Min / TextureSize, Max / TextureSize);
+	UVCoordinates.bIsValid = true;
+
+	Brush.SetUVRegion(MoveTemp(UVCoordinates));
+}
+
+void UAnimationImage::Play()
+{
+	if (!TimerHandle.IsValid() && !StaticImage)
+	{
+		GetWorld()->GetTimerManager().SetTimer(
+			TimerHandle,
+			this,
+			&UAnimationImage::TimerTick,
+			1.0f / FramesPerSecond,
+			true
+		);
+	}
+}
+
+void UAnimationImage::Stop()
+{
+	if (TimerHandle.IsValid())
+	{
+		GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+		TimerHandle.Invalidate();
+	}
+
+}
+
+void UAnimationImage::TimerTick()
+{
+	CurrentFrame++;
+	if (CurrentFrame > TotalFrames - 1) CurrentFrame = 0;
+	SynchronizeProperties();
+}
+//-ИТ
