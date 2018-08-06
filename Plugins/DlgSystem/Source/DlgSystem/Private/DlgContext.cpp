@@ -377,9 +377,10 @@ void UAnimationImage::SynchronizeProperties()
 	FVector2D TextureSize(Texture->GetSizeX(), Texture->GetSizeY());
 
 	//int32 MaxColumns = FMath::FloorToInt(TextureSize.X / Brush.ImageSize.X);
-	int32 MaxColumns = CountColumns;
-	int32 Row = FMath::FloorToInt(CurrentFrame / MaxColumns);
-	int32 Column = CurrentFrame % MaxColumns;
+	
+	int32 Row = FMath::FloorToInt(CurrentFrame / CountColumns);
+	//int32 Column = CurrentFrame % CountColumns;
+	int32 Column = CurrentFrame % RowColumns;
 
 	//FVector2D Min(Brush.ImageSize.X * Column, Brush.ImageSize.Y * Row);
 	FVector2D Min(Brush.ImageSize.X * Column, Brush.ImageSize.Y * Row);

@@ -282,6 +282,9 @@ protected:
 	int32 CountColumns = 4;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+	int32 RowColumns = 4;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
 	bool StaticImage = false;
 
 	void TimerTick();
