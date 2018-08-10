@@ -364,36 +364,70 @@ void UAnimationImage::SetCurrentFrame(int32 Frame)
 {
 	CurrentFrame = Frame;
 	if (CurrentFrame < 0) CurrentFrame = 0;
-	if (CurrentFrame > TotalFrames - 1) CurrentFrame = TotalFrames - 1;
+//	if (CurrentFrame > TotalFrames - 1) CurrentFrame = TotalFrames - 1;
 	SynchronizeProperties();
 }
 
+void UAnimationImage::SetFillFromFolder(bool FillArray)
+{
+	FillFromFolder = FillArray;
+
+	if (FillFromFolder == true)
+	{
+		//if (AnimationImages.Num() > 0) {
+		AnimationImagesTemp = AnimationImages;
+		 
+		UTexture2D* Texture = Cast<UTexture2D>(Brush.GetResourceObject());
+		FString FolderName = Texture->GetFullGroupName(true);
+		AnimationImages.Empty();
+		getFilesInFolder(FolderName);
+		 
+	}
+}
+
+
+
 void UAnimationImage::SynchronizeProperties()
 {
+	//Super::SynchronizeProperties();
+
+	//UTexture2D* Texture = Cast<UTexture2D>(Brush.GetResourceObject());
+	//if (Texture == nullptr) return;
+	//FVector2D TextureSize(Texture->GetSizeX(), Texture->GetSizeY());
+
+	////int32 MaxColumns = FMath::FloorToInt(TextureSize.X / Brush.ImageSize.X);
+	//
+	//int32 Row = FMath::FloorToInt(CurrentFrame / RowsCount);
+	////int32 Column = CurrentFrame % CountColumns;
+	//int32 Column = CurrentFrame % ColumnsCount;
+
+	////FVector2D Min(Brush.ImageSize.X * Column, Brush.ImageSize.Y * Row);
+	//FVector2D Min(Brush.ImageSize.X * Column, Brush.ImageSize.Y * Row);
+	//FVector2D Max = Min + Brush.ImageSize;
+	//FBox2D UVCoordinates(Min / TextureSize, Max / TextureSize);
+	//UVCoordinates.bIsValid = true;
+
+	//Brush.SetUVRegion(MoveTemp(UVCoordinates));
+
 	Super::SynchronizeProperties();
 
-	UTexture2D* Texture = Cast<UTexture2D>(Brush.GetResourceObject());
-	if (Texture == nullptr) return;
-	FVector2D TextureSize(Texture->GetSizeX(), Texture->GetSizeY());
+	if (AnimationImages.Num() > 0) {
+		if (CurrentFrame < AnimationImages.Num()) {
+			UTexture2D* Texture = Cast<UTexture2D>(AnimationImages[CurrentFrame]);
 
-	//int32 MaxColumns = FMath::FloorToInt(TextureSize.X / Brush.ImageSize.X);
-	
-	int32 Row = FMath::FloorToInt(CurrentFrame / CountColumns);
-	//int32 Column = CurrentFrame % CountColumns;
-	int32 Column = CurrentFrame % RowColumns;
+			if (Texture == nullptr) return;
 
-	//FVector2D Min(Brush.ImageSize.X * Column, Brush.ImageSize.Y * Row);
-	FVector2D Min(Brush.ImageSize.X * Column, Brush.ImageSize.Y * Row);
-	FVector2D Max = Min + Brush.ImageSize;
-	FBox2D UVCoordinates(Min / TextureSize, Max / TextureSize);
-	UVCoordinates.bIsValid = true;
-
-	Brush.SetUVRegion(MoveTemp(UVCoordinates));
+			FVector2D TextureSize(Texture->GetSizeX(), Texture->GetSizeY());
+		
+			SetBrushFromTexture(Texture);
+		}
+	}
 }
+//-ИТ
 
 void UAnimationImage::Play()
 {
-	if (!TimerHandle.IsValid() && !StaticImage)
+	if (!TimerHandle.IsValid())
 	{
 		GetWorld()->GetTimerManager().SetTimer(
 			TimerHandle,
@@ -418,7 +452,32 @@ void UAnimationImage::Stop()
 void UAnimationImage::TimerTick()
 {
 	CurrentFrame++;
-	if (CurrentFrame > TotalFrames - 1) CurrentFrame = 0;
+	if (CurrentFrame > AnimationImages.Num() && Loop) CurrentFrame = 0;
 	SynchronizeProperties();
+}
+
+void UAnimationImage::getFilesInFolder(FString Directory)
+{
+	Super::SynchronizeProperties();
+
+	TArray<FString> output;
+
+	TArray<UTexture2D*> AnimImages;
+	AnimImages.Empty();
+
+	if (FPaths::DirectoryExists(Directory))
+	{
+		FString path = Directory + "*.uasset";
+		FFileManagerGeneric::Get().FindFiles(output, *path, true, false);
+		for (int i = 0; i < output.Num(); i++)
+		{
+	
+			output[i] = Directory + output[i];
+
+			FStringAssetReference assetRef(output[i]);
+			
+			AnimationImages.Add(Cast<UTexture2D>(assetRef.TryLoad()));
+		}
+	}
 }
 //-ИТ

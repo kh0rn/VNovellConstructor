@@ -10,6 +10,7 @@
 #include "IUMGModule.h"
 #include "UserWidget.h"
 #include "Image.h"
+#include "Runtime/Core/Public/HAL/FileManagerGeneric.h"
 
 #include "DlgContext.generated.h"
 
@@ -18,6 +19,8 @@ class USoundWave;
 class UTexture2D;
 class UDialogueWave;
 class UDlgDialogue;
+
+class IDesktopPlatform;
 
 
 /** Used to store temporary state of edges */
@@ -261,6 +264,10 @@ public:
 	void SetCurrentFrame(int32 Frame);
 
 	UFUNCTION(BlueprintCallable, Category = Animation)
+	void SetFillFromFolder(bool FillArray);
+
+
+	UFUNCTION(BlueprintCallable, Category = Animation)
 	void Play();
 
 	UFUNCTION(BlueprintCallable, Category = Animation)
@@ -268,24 +275,29 @@ public:
 
 	virtual void SynchronizeProperties();
 
+	virtual void  getFilesInFolder(FString Directory);
+
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
-		int32 FramesPerSecond = 10;
+	int32 FramesPerSecond = 10;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
-		int32 CurrentFrame = 0;
+	int32 CurrentFrame = 0;
+		
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+	bool Loop = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
-		int32 TotalFrames = 1;
+	TArray<UTexture2D*> AnimationImages;
+
+	TArray<UTexture2D*> AnimationImagesTemp;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
-	int32 CountColumns = 4;
+	bool FillFromFolder = false;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
-	int32 RowColumns = 4;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
-	bool StaticImage = false;
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+	//IDesktopPlatform* DesktopPlatform = FDesktopPlatformModule::Get();
+	//IDesktopPlatform DesktopPlatform;
 
 	void TimerTick();
 
