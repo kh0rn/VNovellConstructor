@@ -11,6 +11,8 @@
 #include "UserWidget.h"
 #include "Image.h"
 #include "Runtime/Core/Public/HAL/FileManagerGeneric.h"
+#include "Runtime/UMG/Public/Components/ComboBoxString.h"
+
 
 #include "DlgContext.generated.h"
 
@@ -31,6 +33,7 @@ struct FDlgEdgeData
 
 	FDlgEdgeData(bool bSat, const FDlgEdge* Ptr) : bSatisfied{ bSat }, EdgePtr{ Ptr } {};
 };
+
 
 
 /**
@@ -254,6 +257,24 @@ protected:
 * Set frame size by setting "Image Size" and "Total Frames" http://i.imgur.com/5WuZmKA.png
 */
 
+
+/** Used to store trnsform state of edges */
+USTRUCT(BlueprintType, Blueprintable)
+struct FEffectAnimationImageData
+{
+	GENERATED_USTRUCT_BODY()
+ 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+		//TArray<FName> EffectsName;
+	UComboBoxString* EffectsName;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+		float x;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+		float y;
+
+	//FEffectAnimationImageData(bool bSat, const FDlgEdge* Ptr) : bSatisfied{ bSat }, EdgePtr{ Ptr } {};
+};
+
 UCLASS()
 class UAnimationImage : public UImage
 {
@@ -288,16 +309,20 @@ protected:
 	bool Loop = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
-	TArray<UTexture2D*> AnimationImages;
+	TArray<UTexture2D*> AnimationImages; 
 
-	TArray<UTexture2D*> AnimationImagesTemp;
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+	bool FillFromFolder = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
-	bool FillFromFolder = false;
+	//TMap<FEffectAnimationImageData, float> Effects;
+
+	TArray<FEffectAnimationImageData> effects;
 
 	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
 	//IDesktopPlatform* DesktopPlatform = FDesktopPlatformModule::Get();
-	//IDesktopPlatform DesktopPlatform;
+	//IDesktopPlatform DesktopPlatform; 
+	 
 
 	void TimerTick();
 

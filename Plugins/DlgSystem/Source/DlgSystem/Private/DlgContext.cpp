@@ -375,8 +375,7 @@ void UAnimationImage::SetFillFromFolder(bool FillArray)
 	if (FillFromFolder == true)
 	{
 		//if (AnimationImages.Num() > 0) {
-		AnimationImagesTemp = AnimationImages;
-		 
+		 		 
 		UTexture2D* Texture = Cast<UTexture2D>(Brush.GetResourceObject());
 		FString FolderName = Texture->GetFullGroupName(true);
 		AnimationImages.Empty();
@@ -459,11 +458,9 @@ void UAnimationImage::TimerTick()
 void UAnimationImage::getFilesInFolder(FString Directory)
 {
 	Super::SynchronizeProperties();
-
-	TArray<FString> output;
-
-	TArray<UTexture2D*> AnimImages;
-	AnimImages.Empty();
+	 
+	TArray<FString> output; 
+ 
 
 	if (FPaths::DirectoryExists(Directory))
 	{
