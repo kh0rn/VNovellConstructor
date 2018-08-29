@@ -477,4 +477,28 @@ void UAnimationImage::getFilesInFolder(FString Directory)
 		}
 	}
 }
+
+//bool UEffectAnimationComboBox::Initialize()
+//{
+//	if (!Super::Initialize())
+//	{
+//		return false;
+//	}
+//	if (!effectSettings)
+//	{
+//		return false;
+//	}
+//
+//	//Delete all the text
+//	effectSettings->ClearOptions();
+//
+//	effectSettings->AddOption(TEXT("Low"));
+//	effectSettings->AddOption(TEXT("Medium"));
+//	effectSettings->AddOption(TEXT("High"));
+//	effectSettings->AddOption(TEXT("Epic"));
+//	effectSettings->AddOption(TEXT("Cinematic"));
+//
+//	return true;
+//}
+
 //-ИТ

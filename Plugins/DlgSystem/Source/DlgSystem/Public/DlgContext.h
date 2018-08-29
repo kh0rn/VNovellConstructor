@@ -250,6 +250,24 @@ protected:
 
 };
 
+
+
+//+ИТ
+//Class combobox with user settings
+UCLASS()
+class UEffectAnimationComboBox : public UComboBoxString
+{
+	GENERATED_BODY()
+
+public:
+	//virtual bool Initialize() override;
+
+	/*UPROPERTY(BlueprintReadOnly, Category = "Gui", meta = (DisplayName = "effectSettings", BindWidget))
+	UComboBoxString* effectSettings; */
+};
+
+//-ИТ
+
 /**
 * UMG Animated Image.
 * Make sure you add "UMG", "Slate" and "SlateCore" to your module's dependencies.
@@ -263,16 +281,19 @@ USTRUCT(BlueprintType, Blueprintable)
 struct FEffectAnimationImageData
 {
 	GENERATED_USTRUCT_BODY()
- 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
-		//TArray<FName> EffectsName;
-	UComboBoxString* EffectsName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation) 
+	UEffectAnimationComboBox* EffectsName;
+  
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
 		float x;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
 		float y;
 
-	//FEffectAnimationImageData(bool bSat, const FDlgEdge* Ptr) : bSatisfied{ bSat }, EdgePtr{ Ptr } {};
+	//FEffectAnimationImageData(TArray<FString> effects = {"Flash1","Flash2","Flash3","Flash4"}, float x_effect = 1.0f, float y_effect = 1.0f)  : EffectsName(effects), x(x_effect), y(y_effect) {}
+
+	//FEffectAnimationImageData(UEffectAnimationComboBox* effects, float x_effect = 1.0f, float y_effect = 1.0f) : EffectsName(effects), x(x_effect), y(y_effect) {}
+
 };
 
 UCLASS()
