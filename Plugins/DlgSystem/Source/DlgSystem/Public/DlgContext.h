@@ -260,7 +260,8 @@ class UEffectAnimationComboBox : public UComboBoxString
 	GENERATED_BODY()
 
 public:
-	//virtual bool Initialize() override;
+	UEffectAnimationComboBox();
+//	virtual void PostInitProperties() override;
 
 	/*UPROPERTY(BlueprintReadOnly, Category = "Gui", meta = (DisplayName = "effectSettings", BindWidget))
 	UComboBoxString* effectSettings; */
@@ -302,6 +303,8 @@ class UAnimationImage : public UImage
 	GENERATED_BODY()
 
 public:
+	UAnimationImage();
+
 	UFUNCTION(BlueprintCallable, Category = Animation)
 	void SetCurrentFrame(int32 Frame);
 
@@ -314,6 +317,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Animation)
 	void Stop();
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+		UComboBoxString* EffectsName;
+
 
 	virtual void SynchronizeProperties();
 
