@@ -408,7 +408,24 @@ void UAnimationImage::SynchronizeProperties()
 
 	//Brush.SetUVRegion(MoveTemp(UVCoordinates));
 
+	
+
+
 	Super::SynchronizeProperties();
+
+	TArray<FString> DefOptions;
+
+	DefOptions.Add("Flash");
+	DefOptions.Add("Flash2");
+	DefOptions.Add("Flash3");
+	//-ИТ
+
+	// Initialize the set of options from the default set only once.
+	for (const FString& DefOption : DefOptions)
+	{
+		EffectsName->AddOption(DefOption);
+	}
+
 
 	if (AnimationImages.Num() > 0) {
 		if (CurrentFrame < AnimationImages.Num()) {
@@ -478,22 +495,22 @@ void UAnimationImage::getFilesInFolder(FString Directory)
 	}
 }
 
-
-UAnimationImage::UAnimationImage()
-{
-	TArray<FString> DefOptions;
-
-	DefOptions.AddUnique("Flash");
-	DefOptions.AddUnique("Flash2");
-	DefOptions.AddUnique("Flash3");
-	//-ИТ
-
-	// Initialize the set of options from the default set only once.
-	for (const FString& DefOption : DefOptions)
-	{
-		EffectsName->AddOption(DefOption);
-	}
-} 
+//
+//UAnimationImage::UAnimationImage()
+//{
+//	TArray<FString> DefOptions;
+//
+//	DefOptions.AddUnique("Flash");
+//	DefOptions.AddUnique("Flash2");
+//	DefOptions.AddUnique("Flash3");
+//	//-ИТ
+//
+//	// Initialize the set of options from the default set only once.
+//	for (const FString& DefOption : DefOptions)
+//	{
+//		EffectsName->AddOption(DefOption);
+//	}
+//} 
 
 //bool UEffectAnimationComboBox::Initialize()
 //{

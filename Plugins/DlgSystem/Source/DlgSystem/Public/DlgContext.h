@@ -260,7 +260,7 @@ class UEffectAnimationComboBox : public UComboBoxString
 	GENERATED_BODY()
 
 public:
-	UEffectAnimationComboBox();
+	//UEffectAnimationComboBox();
 //	virtual void PostInitProperties() override;
 
 	/*UPROPERTY(BlueprintReadOnly, Category = "Gui", meta = (DisplayName = "effectSettings", BindWidget))
@@ -303,7 +303,7 @@ class UAnimationImage : public UImage
 	GENERATED_BODY()
 
 public:
-	UAnimationImage();
+//	UAnimationImage();
 
 	UFUNCTION(BlueprintCallable, Category = Animation)
 	void SetCurrentFrame(int32 Frame);
@@ -319,8 +319,7 @@ public:
 	void Stop();
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
-		UComboBoxString* EffectsName;
-
+	UEffectAnimationComboBox* EffectsName;
 
 	virtual void SynchronizeProperties();
 
@@ -342,10 +341,10 @@ protected:
 	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
 	bool FillFromFolder = false;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
 	//TMap<FEffectAnimationImageData, float> Effects;
 
-	TArray<FEffectAnimationImageData> effects;
+	//TArray<FEffectAnimationImageData> effects;
 
 	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
 	//IDesktopPlatform* DesktopPlatform = FDesktopPlatformModule::Get();
