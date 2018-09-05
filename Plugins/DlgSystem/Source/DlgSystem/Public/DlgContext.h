@@ -249,25 +249,16 @@ protected:
 
 
 };
+ 
 
-
-
-//+ИТ
-//Class combobox with user settings
-UCLASS()
-class UEffectAnimationComboBox : public UComboBoxString
-{
-	GENERATED_BODY()
-
-public:
-	//UEffectAnimationComboBox();
-//	virtual void PostInitProperties() override;
-
-	/*UPROPERTY(BlueprintReadOnly, Category = "Gui", meta = (DisplayName = "effectSettings", BindWidget))
-	UComboBoxString* effectSettings; */
-};
-
-//-ИТ
+UENUM()
+namespace EEffectType {
+	enum Type {
+		Tranform UMETA(DisplayName = "Перемещение"),
+		Scale UMETA(DisplayName = "Маштаб"),
+		Focus UMETA(DisplayName = "Фокус"),
+	};
+}
 
 /**
 * UMG Animated Image.
@@ -276,26 +267,27 @@ public:
 * Set frame size by setting "Image Size" and "Total Frames" http://i.imgur.com/5WuZmKA.png
 */
 
-
 /** Used to store trnsform state of edges */
 USTRUCT(BlueprintType, Blueprintable)
 struct FEffectAnimationImageData
 {
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation) 
-	UEffectAnimationComboBox* EffectsName;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+	TEnumAsByte<EEffectType::Type> Effects;
+	//UEffectAnimationComboBox* EffectsName;	
   
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
-		float x;
+		float X;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
-		float y;
+		float Y;
 
 	//FEffectAnimationImageData(TArray<FString> effects = {"Flash1","Flash2","Flash3","Flash4"}, float x_effect = 1.0f, float y_effect = 1.0f)  : EffectsName(effects), x(x_effect), y(y_effect) {}
 
 	//FEffectAnimationImageData(UEffectAnimationComboBox* effects, float x_effect = 1.0f, float y_effect = 1.0f) : EffectsName(effects), x(x_effect), y(y_effect) {}
 
 };
+
 
 UCLASS()
 class UAnimationImage : public UImage
@@ -311,6 +303,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Animation)
 	void SetFillFromFolder(bool FillArray);
 
+	UFUNCTION(BlueprintCallable, Category = Animation)
+	void AnimationEffects();
+
+	UFUNCTION(BlueprintCallable, Category = Animation)
+	void InitTransform();
 
 	UFUNCTION(BlueprintCallable, Category = Animation)
 	void Play();
@@ -318,8 +315,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Animation)
 	void Stop();
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
-	UEffectAnimationComboBox* EffectsName;
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+	//UComboBoxString* EffectsName; 
 
 	virtual void SynchronizeProperties();
 
@@ -341,10 +338,10 @@ protected:
 	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
 	bool FillFromFolder = false;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
 	//TMap<FEffectAnimationImageData, float> Effects;
 
-	//TArray<FEffectAnimationImageData> effects;
+	TArray<FEffectAnimationImageData> effects;
 
 	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
 	//IDesktopPlatform* DesktopPlatform = FDesktopPlatformModule::Get();

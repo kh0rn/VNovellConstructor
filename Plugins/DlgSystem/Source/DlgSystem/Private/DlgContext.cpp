@@ -384,7 +384,24 @@ void UAnimationImage::SetFillFromFolder(bool FillArray)
 	}
 }
 
+void UAnimationImage::AnimationEffects()
+{
+	if (effects.Num() > 0)
+	{
+		for (int i = 0; i < effects.Num(); i++)
+		{
 
+			if (effects[i].Effects.GetValue() == EEffectType::Focus) {
+				SetRenderAngle(effects[i].X+1);
+			}
+		}
+	}
+}
+
+void UAnimationImage::InitTransform()
+{
+	
+}
 
 void UAnimationImage::SynchronizeProperties()
 {
@@ -407,24 +424,16 @@ void UAnimationImage::SynchronizeProperties()
 	//UVCoordinates.bIsValid = true;
 
 	//Brush.SetUVRegion(MoveTemp(UVCoordinates));
-
-	
-
-
+		
 	Super::SynchronizeProperties();
-
-	TArray<FString> DefOptions;
-
-	DefOptions.Add("Flash");
-	DefOptions.Add("Flash2");
-	DefOptions.Add("Flash3");
-	//-ИТ
+	  
 
 	// Initialize the set of options from the default set only once.
-	for (const FString& DefOption : DefOptions)
+	//EffectsName->RefreshOptions();
+	/*for (const FString& DefOption : DefOptions)
 	{
 		EffectsName->AddOption(DefOption);
-	}
+	}*/
 
 
 	if (AnimationImages.Num() > 0) {
@@ -469,6 +478,8 @@ void UAnimationImage::TimerTick()
 {
 	CurrentFrame++;
 	if (CurrentFrame > AnimationImages.Num() && Loop) CurrentFrame = 0;
+
+	AnimationEffects();
 	SynchronizeProperties();
 }
 
@@ -494,45 +505,5 @@ void UAnimationImage::getFilesInFolder(FString Directory)
 		}
 	}
 }
-
-//
-//UAnimationImage::UAnimationImage()
-//{
-//	TArray<FString> DefOptions;
-//
-//	DefOptions.AddUnique("Flash");
-//	DefOptions.AddUnique("Flash2");
-//	DefOptions.AddUnique("Flash3");
-//	//-ИТ
-//
-//	// Initialize the set of options from the default set only once.
-//	for (const FString& DefOption : DefOptions)
-//	{
-//		EffectsName->AddOption(DefOption);
-//	}
-//} 
-
-//bool UEffectAnimationComboBox::Initialize()
-//{
-//	if (!Super::Initialize())
-//	{
-//		return false;
-//	}
-//	if (!effectSettings)
-//	{
-//		return false;
-//	}
-//
-//	//Delete all the text
-//	effectSettings->ClearOptions();
-//
-//	effectSettings->AddOption(TEXT("Low"));
-//	effectSettings->AddOption(TEXT("Medium"));
-//	effectSettings->AddOption(TEXT("High"));
-//	effectSettings->AddOption(TEXT("Epic"));
-//	effectSettings->AddOption(TEXT("Cinematic"));
-//
-//	return true;
-//}
-
-//-ИТ
+ 
+//-ИТ 
