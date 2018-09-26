@@ -254,9 +254,10 @@ protected:
 UENUM()
 namespace EEffectType {
 	enum Type {
-		Tranform UMETA(DisplayName = "Перемещение"),
+		Translation UMETA(DisplayName = "Перемещение"),
 		Scale UMETA(DisplayName = "Маштаб"),
-		Focus UMETA(DisplayName = "Фокус"),
+		Shear UMETA(DisplayName = "Скос"),
+		Angle UMETA(DisplayName = "Угол"),
 	};
 }
 
@@ -296,7 +297,7 @@ class UAnimationImage : public UImage
 
 public:
 //	UAnimationImage();
-
+	
 	UFUNCTION(BlueprintCallable, Category = Animation)
 	void SetCurrentFrame(int32 Frame);
 
@@ -307,7 +308,7 @@ public:
 	void AnimationEffects();
 
 	UFUNCTION(BlueprintCallable, Category = Animation)
-	void InitTransform();
+	void InitStartSettings();
 
 	UFUNCTION(BlueprintCallable, Category = Animation)
 	void Play();
@@ -346,7 +347,24 @@ protected:
 	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Animation)
 	//IDesktopPlatform* DesktopPlatform = FDesktopPlatformModule::Get();
 	//IDesktopPlatform DesktopPlatform; 
-	 
+
+	///Start settings
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = StartSettings)
+	float Start_X = 0.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = StartSettings)
+	float Start_Y = 0.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = StartSettings)
+		float Start_Size_X = 0.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = StartSettings)
+		float Start_Size_Y = 0.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = StartSettings)
+		float Start_Z_Order = 0;
+
 
 	void TimerTick();
 

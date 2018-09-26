@@ -391,14 +391,14 @@ void UAnimationImage::AnimationEffects()
 		for (int i = 0; i < effects.Num(); i++)
 		{
 
-			if (effects[i].Effects.GetValue() == EEffectType::Focus) {
+		/*	if (effects[i].Effects.GetValue() == EEffectType::Focus) {
 				SetRenderAngle(effects[i].X+1);
-			}
+			}*/
 		}
 	}
 }
 
-void UAnimationImage::InitTransform()
+void UAnimationImage::InitStartSettings()
 {
 	
 }
@@ -452,6 +452,10 @@ void UAnimationImage::SynchronizeProperties()
 
 void UAnimationImage::Play()
 {
+
+	UCanvasPanelSlot* CanvasSlot = Cast< UCanvasPanelSlot >(this->Slot);
+	CanvasSlot->SetPosition(FVector2D(Start_X, Start_Y));
+
 	if (!TimerHandle.IsValid())
 	{
 		GetWorld()->GetTimerManager().SetTimer(
